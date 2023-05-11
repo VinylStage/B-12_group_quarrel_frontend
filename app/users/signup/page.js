@@ -1,7 +1,5 @@
 'use client'
 
-import './globals.css'
-
 export default function SignUp() {
   return (
     <div id="footer-wrapper">
