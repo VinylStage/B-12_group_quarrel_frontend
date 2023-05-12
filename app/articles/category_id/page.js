@@ -4,7 +4,7 @@ export default function category() {
   return (
     <div className="wrapper">
         <div className="container" id="main">
-            <h1 class="sh_besttitle">Best Post</h1>
+            <h1 className="sh_besttitle">Best Post</h1>
             <div className="row features sh_bestbox" style={{margin: '50px 0px;', paddingBottom: '50px;'}}>
                 <section className="col-4 col-12-narrower feature">
                     <div className="sh_row sh_best_userinfo">
