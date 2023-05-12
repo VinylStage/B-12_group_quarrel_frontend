@@ -1,9 +1,11 @@
-"use client";
+'use client'
 
 import React from 'react'
 
-export const page = () => {
+function page() {
   return (
-    <div>{userId}</div>
+    <div>[userId]</div>
   )
 }
+
+export default page
