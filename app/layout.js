@@ -11,9 +11,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const token = localStorage.getItem("refresh");
-  async function handleLogout() {
-    console.log(token)
+  // const token = localStorage.getItem("refresh");
+  // async function handleLogout() {
+  //   console.log(token)
     // const response = await fetch("http://127.0.0.1:8000/users/api/token/blacklist/", {
     //   headers: {
     //     "content-type": "application/json",
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     // localStorage.removeItem("refresh");
     // localStorage.removeItem("payload");
     // console.log("logout completed");
-  }
+  // }
   return (
     <html lang="ko">
       <head>
@@ -66,7 +66,7 @@ export default function RootLayout({ children }) {
                   {/* <!-- 비회원은 Login으로, Login 화면에서 signup 버튼 만들기 --> */}
                   <li className="sh_mypage">
                     <a href="#">MyPage</a>
-                    <button onClick={handleLogout} type="submit" value="Logout">Logout</button>
+                    {/* <button onClick={handleLogout} type="submit" value="Logout">Logout</button> */}
                     <ul>
                       <li>
                         <a href="#">NO.1</a>
