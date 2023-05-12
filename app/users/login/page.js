@@ -20,10 +20,10 @@ export default function Login() {
                         <div className="col-12">
                             <ul className="actions" style={{float: 'right'}}>
                                 <li><a href="#" style={{borderBottom: 'none'}}>
-                                    <input type="submit" value="Sign up"/></a>
+                                    <p type="submit" value="Sign up"/>Sign up</a>
                                 </li>
                                 <li><a href="#" style={{borderBottom: 'none'}}>
-                                    <input type="submit" value="Login"/></a>
+                                    <p type="submit" value="Login"/>Login</a>
                                 </li>
                             </ul>
                         </div>
