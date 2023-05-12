@@ -44,10 +44,8 @@ export default function Login() {
         <header className="major">
           <h2>Login</h2>
         </header>
-        <div
-          className="row"
-          style={{ justifyContent: "center", marginTop: "-20px" }}
-        >
+
+        <div className="row" style={{ justifyContent: "center", marginTop: "-20px" }}>
           <section className="col-6 col-12-narrower">
             <form method="post" action="#">
               <div className="row gtr-50">
@@ -91,6 +89,7 @@ export default function Login() {
               </div>
             </form>
           </section>
+
         </div>
       </div>
     </div>
