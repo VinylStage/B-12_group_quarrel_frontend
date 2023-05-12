@@ -21,6 +21,7 @@ export default function SignUp() {
         password2: password2,
       }),
     });
+    console.log(response);
   }
 
   return (
@@ -58,22 +59,22 @@ export default function SignUp() {
                 </div>
                 <div className="col-12 col-12-mobile">
                   <input
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="password"
-                    autocomplete="new-password"
+                    autoComplete="new-password"
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
                   />
                 </div>
                 <div className="col-12 col-12-mobile">
                   <input
-                    type="text"
+                    type="password"
                     id="password2"
                     name="password"
                     placeholder="password check"
-                    autocomplete="new-password"
+                    autoComplete="new-password"
                     value={password2}
                     onChange={(event) => setPassword2(event.target.value)}
                   />
@@ -81,12 +82,16 @@ export default function SignUp() {
                 <div className="col-12">
                   <ul className="actions" style={{ float: "right" }}>
                     <li>
-                      <a href="#" style={{ borderBottom: "none" }}>
-                        <input type="submit" value="Login"/>
+                      <a href="login/" style={{ borderBottom: "none" }}>
+                        Login
                       </a>
                     </li>
                     <li>
-                      <button onClick={handleSignup} type="submit" value="Submit"/>
+                      <button
+                        onClick={handleSignup}
+                        type="submit"
+                        value="Submit"
+                      />
                     </li>
                   </ul>
                 </div>
