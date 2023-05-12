@@ -45,6 +45,12 @@ input:focus-visible {
 	width: 100px;
 }
 
+.sh_bestbox {
+	border: 1px solid #c2c2c2;
+	padding: 20px 55px;
+	box-shadow: 0 0 10px 3px inset #dfdfdf;
+}
+
 .sh_a {
 	border: none;
 }
@@ -79,9 +85,39 @@ input:focus-visible {
 }
 
 .sh_besttitle {
+	margin-left: 10px;
 	font-size: 35px;
 	display: block;
 
+}
+
+.sh_box {
+	border-bottom: 1px solid #52575c;
+	width: 100%;
+}
+
+.sh_article {
+	padding: 20px;
+}
+
+.sh_article_list {
+	margin-top: 100px;
+    column-width: 350px;
+	break-inside: avoid;
+}
+
+.sh_article_list_col {
+	flex-direction: column;
+    width: 450px;
+	margin-right: 0px;
+}
+
+.sh_profileimg {
+	width: 50px;
+    height: 50px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 100%;
 }
 
 /*
@@ -114,6 +150,7 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
+	overflow-x: hidden;
 }
 
 ol, ul {
@@ -277,9 +314,10 @@ input, select, textarea {
 	}
 
 	.feature {
-		border: 0.5px solid #a3a3a3;
+		border: 0.5px solid #d0d0d0;
 		border-radius: 5px;
 		margin: 35px;
+		box-shadow: 0 0 5px 2px #e1e1e1;
 	}
 
 /* Sections/Article */
@@ -320,7 +358,7 @@ input, select, textarea {
 	.container {
 		margin: 0 auto;
 		max-width: 100%;
-		width: 1300px;
+		width: 1380px;
 	}
 
 		@media screen and (max-width: 1280px) {
@@ -435,7 +473,7 @@ input, select, textarea {
 
 		.row > .col-4 {
 			width: 33.33333%;
-			height: 800px;
+			height: 750px;
 		}
 
 		.row > .off-4 {
@@ -1848,7 +1886,7 @@ input, select, textarea {
 		.image img {
 			display: block;
 			width: 100%;
-			height: 340px;
+			height: 300px;
 			object-position: center;
 			object-fit: cover;
 		}
@@ -2162,8 +2200,8 @@ input, select, textarea {
 
 	.image-wrapper {
 		position: relative;
-		width: 340px;
-		height: 340px;
+		width: 300px;
+		height: 300px;
 	}
 
 		.image-wrapper .image {
@@ -2194,13 +2232,13 @@ input, select, textarea {
 		background-image: url("/public/images/overlay.png"), url("/public/images/header.svg"), linear-gradient(75deg, #FF7088 15%, #F2B69D 55%);
 		background-color: #f08c89;
 		background-size: 100% 620%;
-		background-size: 128px 128px, 100% 620%, auto;
+		/* background-size: 128px 128px, 100% 620%, auto; */
 		background-repeat: repeat, no-repeat, no-repeat;
 	}
 
 	.homepage #header-wrapper {
 		padding: 0em 0 5em;
-		background-size: 128px 128px, 100% 100%, auto;
+		/* background-size: 128px 128px, 100% 100%, auto; */
 	}
 
 	#promo-wrapper {
