@@ -17,12 +17,20 @@ export default function follow() {
                                     <p className="sh_p">post by.</p>
                                     <p className="sh_p">
                                         <a href="#" className="sh_a">user</a>
-                                    </p>			
+                                    </p>
                                 </div>
                                 <p className="sh_p day">2023. 05. 23</p>
                             </div>
                         </header>
                         <a href="#" className="image featured"><img src="images/pic01.jpg" alt="" /></a>
+                        <div className="sh_row" style={{justifyContent: 'flex-end'}}>
+                        <form method="post" action="#" className="sh_row sh_icon">
+                            <button type="submit" className="sh_icon sh_a">Bookmark</button><p className="sh_p3">44</p>
+                        </form>
+                        <form method="post" action="#" className="sh_row sh_icon">
+                            <button type="submit" className="sh_icon sh_a">Like</button><p className="sh_p3">44</p>
+                        </form>
+                        </div>
                         <p>Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin rhoncus, sapien
                         mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
                         condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
