@@ -10,13 +10,13 @@ export default function follow() {
                     {/* 게시글 */}
                     <article id="content">
                         <header>
-                            <li className="sh_line"></li>
+                            <div className="sh_line"></div>
                             <h3 style={{margin: '15px 0px 5px'}}>Follower's Title</h3>
                             <div className="sh_row sh_best_userinfo">
                                 <div className="sh_p sh_row sh_best_user">
                                     <p className="sh_p">post by.</p>
                                     <p className="sh_p">
-                                        <a href="#" className="sh_a">user</a>
+                                        <a href="#" className="sh_a">name</a>
                                     </p>
                                 </div>
                                 <p className="sh_p day">2023. 05. 23</p>
@@ -38,16 +38,6 @@ export default function follow() {
                         eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
                         turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
                         Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-                        <p>Mauris eleifend eleifend felis aliquet ornare. Vestibulum porta velit at elementum
-                        gravida nibh eget, volutpat odio. Proin rhoncus, sapien
-                        mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
-                        condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
-                        ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque
-                        eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
-                        turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
-                        Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-                        <p>Vestibulum pellentesque posuere lorem non aliquam. Mauris eleifend eleifend
-                        felis aliquet ornare. Vestibulum porta velit at elementum elementum.</p>
                     </article>
                 </div>
                 <div className="col-4 col-12-narrower">
@@ -61,7 +51,7 @@ export default function follow() {
                                         <img className="sh_profileimg" src="images/pic03.jpg" alt=""/>
                                     </a>
                                     <p className="sh_p">
-                                        <a href="#" className="sh_a">user</a>
+                                        <a href="#" className="sh_a">follow's name</a>
                                     </p>
                                 </div>
                             </div>
