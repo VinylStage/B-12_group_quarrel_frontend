@@ -164,8 +164,8 @@ export default function category() {
                         </section>
                     </section>
                 </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    
+  )
 }
