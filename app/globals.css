@@ -4,7 +4,8 @@
 .ha_box {
 	width: 55%; 
 	margin: 10% auto; 
-	border: 2px solid #cccccc; padding: 20px 20px 20px 20px
+	border: 2px solid #cccccc; 
+	padding: 20px 20px 20px 20px
 }
 
 .ha_imginput {
@@ -75,7 +76,7 @@ input:focus-visible {
 
 .sh_best_user {
 	align-items: center;
-	width: 100px;
+	width: 400px;
 }
 
 .sh_bestbox {
@@ -158,6 +159,36 @@ input:focus-visible {
 	overflow: auto;
 	height: max-content;
 }
+
+.sh_container {
+	width: 1050px !important;
+}
+
+.sh_bookmark {
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin: 50px 0px;
+	padding-bottom: 50px;
+}
+
+.sh_profileimg2 {
+	width: 100px;
+    height: 100px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 100%;
+}
+
+.sh_chek {
+	width: 25px;
+	height: 25px;
+	border-radius: 100%;
+}
+
+.sh_chek:active {
+	background-color: #f35858;
+}
+
 
 /* ----------------------------------- */
 
@@ -440,7 +471,7 @@ input, select, textarea {
 
 	.row {
 		display: flex;
-		flex-wrap: nowrap;
+		flex-wrap: wrap;
 		box-sizing: border-box;
 		align-items: stretch;
 		justify-content: space-between;

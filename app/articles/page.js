@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function category() {
+
+export default function create() {
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -28,50 +29,26 @@ export default function category() {
     router.refresh();
   }
   return (
-    <form method="post" className="ha_box">
-      <h2> 게시글 작성 </h2>
-      <label htmlFor="category">Category:</label>
-      <textarea
-        name="category"
-        className="ha_input"
-        placeholder="카테고리를 입력해주세요."
-        onChange={(event) => setCategory(event.target.value)}
-      ></textarea>
-      <label htmlFor="title">Title:</label>
-      <textarea
-        name="title"
-        className="ha_input"
-        placeholder="게시글 제목을 입력해주세요."
-        onChange={(event) => setTitle(event.target.value)}
-      ></textarea>
-      <label htmlFor="content">Content:</label>
-      <textarea
-        name="content"
-        className="ha_input"
-        placeholder="게시글 내용을 입력해주세요."
-        onChange={(event) => setContent(event.target.value)}
-      ></textarea>
-      <label htmlFor="content">Article_image:</label>
-      <div className="input-group mb-3 ha_imginput"></div>
-      <input
-        type="file"
-        className="form-control"
-        id="profile-image"
-        name="profile-image"
-        accept="image/*"
-        onChange={(event) => setFile(event.target.value)}
-      />
-      <textarea
-        name="content"
-        className="ha_url"
-        placeholder="게시글 사진 url을 입력해주세요."
-      ></textarea>
-      <div className="ha_box2">
-        <button type="submit" className="ha_bnt" onClick={handleArticle}>
-          등록
-        </button>
-        <button>취소</button>
-      </div>
+    <form method="post" action="/create-post/" className="ha_box">
+        <h2> 게시글 작성 </h2>
+        <label for="category">Category:</label>
+        <textarea name="name" className="ha_input" placeholder="카테고리를 입력해주세요."></textarea>
+        
+        <label for="title">Title:</label>
+        <textarea name="title" className="ha_input" placeholder="게시글 제목을 입력해주세요."></textarea>            
+        
+        <label for="content">Content:</label>
+        <textarea name="content" className="ha_input" placeholder="게시글 내용을 입력해주세요."></textarea>
+        
+        <label for="comment">Article_image:</label>
+        <div class="input-group mb-3 ha_imginput"></div>
+        <input type="file" class="form-control" id="profile-image" name="profile-image" accept="image/*"/>
+        <textarea name="img" className="ha_url" placeholder="게시글 사진 url을 입력해주세요."></textarea>
+        
+        <div className="ha_box2">
+            <button type="submit" className="ha_bnt">등록</button>
+            <button type="submit">취소</button>
+        </div>
     </form>
   );
 }
