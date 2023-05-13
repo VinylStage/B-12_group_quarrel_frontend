@@ -1,14 +1,14 @@
 "use client";
 
-
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   async function handleLogin() {
-    console.log(email, password);
     const response = await fetch("http://127.0.0.1:8000/users/api/token/", {
       headers: {
         "content-type": "application/json",
@@ -16,27 +16,26 @@ export default function Login() {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
     });
-    
+
     const responseJson = await response.json();
-    
+
     localStorage.setItem("access", responseJson.access);
     localStorage.setItem("refresh", responseJson.refresh);
-    
-    
+
     const base64Url = responseJson.access.split(".")[1];
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
     const jsonPayload = decodeURIComponent(
       atob(base64)
-      .split("")
-      .map(function (c) {
-        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join("")
-      );
-      
-      localStorage.setItem("payload", jsonPayload);
-      
-    }
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+    localStorage.setItem("payload", jsonPayload);
+    router.push("/");
+    router.refresh();
+  }
 
   return (
     <div id="footer-wrapper">
@@ -45,7 +44,10 @@ export default function Login() {
           <h2>Login</h2>
         </header>
 
-        <div className="row" style={{ justifyContent: "center", marginTop: "-20px" }}>
+        <div
+          className="row"
+          style={{ justifyContent: "center", marginTop: "-20px" }}
+        >
           <section className="col-6 col-12-narrower">
             <form method="post" action="#">
               <div className="row gtr-50">
@@ -89,7 +91,6 @@ export default function Login() {
               </div>
             </form>
           </section>
-
         </div>
       </div>
     </div>

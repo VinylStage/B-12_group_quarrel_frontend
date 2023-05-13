@@ -1,7 +1,7 @@
 "use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
-
+import { useRouter } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -10,11 +10,43 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  function handleLogout() {
+  const refresh = localStorage.getItem("refresh");
+  async function handleLogout() {
+    const router = useRouter();
+    const response = await fetch(
+      "http://127.0.0.1:8000/users/api/token/blacklist/",
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({ refresh: refresh }),
+      }
+    );
+
     localStorage.removeItem("access");
     localStorage.removeItem("refresh");
     localStorage.removeItem("payload");
-    console.log("logout completed");
+    router.refresh();
+  }
+  function AuthView() {
+    const access = localStorage.getItem("access");
+    if (access) {
+      return (
+        <div>
+          <a href="#">MyPage</a>
+          <button onClick={handleLogout} type="submit" value="Submit">
+            Logout
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <a href="/users/login">Login</a> | <a href="/users/signup">signup</a>
+        </div>
+      );
+    }
   }
   return (
     <html lang="ko">
@@ -50,15 +82,12 @@ export default function RootLayout({ children }) {
                   <li>
                     <a href="#">Category</a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="#">Category</a>
-                  </li>
+                  </li> */}
                   {/* <!-- 비회원은 Login으로, Login 화면에서 signup 버튼 만들기 --> */}
                   <li className="sh_mypage">
-                    <a href="#">MyPage</a>
-                    <button onClick={handleLogout} type="submit" value="Submit">
-                      Logout
-                    </button>
+                    <AuthView></AuthView>
                     <ul>
                       <li>
                         <a href="#">NO.1</a>
@@ -109,12 +138,13 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* <!-- Scripts --> */}
-        {/* <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.dropotron.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script> */}
+
+        <script src="%PUBLIC_URL%/js/jquery.min.js"></script>
+        <script src="%PUBLIC_URL%/js/jquery.dropotron.min.js"></script>
+        <script src="%PUBLIC_URL%/js/browser.min.js"></script>
+        <script src="%PUBLIC_URL%/js/breakpoints.min.js"></script>
+        <script src="%PUBLIC_URL%/js/util.js"></script>
+        <script src="%PUBLIC_URL%/js/main.js"></script>
       </body>
     </html>
   );

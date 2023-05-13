@@ -1,14 +1,15 @@
 "use client";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const router = useRouter();
 
   async function handleSignup() {
-    console.log(name, password, password2);
     const response = await fetch("http://127.0.0.1:8000/users/signup/", {
       headers: {
         "content-type": "application/json",
@@ -21,7 +22,8 @@ export default function SignUp() {
         password2: password2,
       }),
     });
-    console.log(response);
+    router.push("/users/login");
+    router.refresh();
   }
 
   return (
