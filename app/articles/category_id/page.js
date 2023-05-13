@@ -1,6 +1,24 @@
-'use client'
+"use client";
+
+import { useState } from "react";
 
 export default function category() {
+  const [data, setData] = useState([]);
+  const token = localStorage.getItem("access");
+
+  const fetchData = async () => {
+    const response = await fetch(
+      "http://127.0.0.1:8000/articles/<int:category_id/",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        method: "GET",
+      },
+      setData(response.data)
+    );
+  };
+  console.log({ setData });
   return (
     <div className="wrapper">
         <div className="container" id="main" style={{width:''}}>
@@ -147,6 +165,7 @@ export default function category() {
                     </section>
                 </div>
         </div>
+      </div>
     </div>
-  )
+  );
 }

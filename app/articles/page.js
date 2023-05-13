@@ -1,6 +1,33 @@
-'use client'
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 export default function create() {
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [file, setFile] = useState("");
+  const router = useRouter();
+  const token = localStorage.getItem("access");
+  async function handleArticle() {
+    const response = await fetch("http://127.0.0.1:8000/articles/1/", {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      method: "POST",
+      body: JSON.stringify({
+        category: category,
+        title: title,
+        content: content,
+        file: file,
+      }),
+    });
+    router.push("/articles/category_id");
+    router.refresh();
+  }
   return (
     <form method="post" action="/create-post/" className="ha_box">
         <h2> 게시글 작성 </h2>
@@ -23,5 +50,5 @@ export default function create() {
             <button type="submit">취소</button>
         </div>
     </form>
-    )
+  );
 }
