@@ -19,15 +19,19 @@ export default function FollowerView({ user_id }) {
     fetchData();
   }, [user_id]);
 
-  return (
-    <div>
-      {/* follows 데이터를 사용하여 UI 렌더링 */}
-      {followers.map((follow)  => {
-        console.log(follow);
-        return <div key={follow.id}>{follow.follower}</div>
-})}
+return(
+  <div>
+  {followers.map((follow) => (
+    <div key = {follow.id} className="sh_p sh_row sh_best_user">
+      <a href="#" className="sh_profileimg">
+        <img className="sh_profileimg" src={follow.followerimage}alt=""/>
+      </a>
+      <p className="sh_p">
+         <a href="#" className="sh_a">{follow.follower}</a>
+      </p>
     </div>
-  );
+  ))}
+  </div>
+);
 }
-
 

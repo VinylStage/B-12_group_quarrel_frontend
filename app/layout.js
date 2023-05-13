@@ -1,6 +1,5 @@
-'user client'
-
-import './globals.css'
+"use client";
+import "./globals.css";
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,10 +10,16 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  function handleLogout() {
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
+    localStorage.removeItem("payload");
+    console.log("logout completed");
+  }
   return (
     <html lang="ko">
       <head>
-        <meta charSet="utf-8"/>
+        <meta charSet="utf-8" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, user-scalable=no"
@@ -39,7 +44,7 @@ export default function RootLayout({ children }) {
                   {/* <!-- Logo --> */}
                   <li className="sh_logo">
                     <h1 id="logo">
-                      <a href="index.html">SIVIE</a>
+                      <a href="/">SIVIE</a>
                     </h1>
                   </li>
                   <li>
@@ -51,6 +56,9 @@ export default function RootLayout({ children }) {
                   {/* <!-- 비회원은 Login으로, Login 화면에서 signup 버튼 만들기 --> */}
                   <li className="sh_mypage">
                     <a href="#">MyPage</a>
+                    <button onClick={handleLogout} type="submit" value="Submit">
+                      Logout
+                    </button>
                     <ul>
                       <li>
                         <a href="#">NO.1</a>
@@ -88,7 +96,10 @@ export default function RootLayout({ children }) {
           {children}
           {/* <!-- Footer --> */}
           <div id="footer-wrapper">
-            <ul className="menu" style={{ display: 'flex', justifyContent: 'center' }}>
+            <ul
+              className="menu"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
               <li>&copy; Untitled. All rights reserved.</li>
               <li>
                 TEAM: <a href="#">SIVIE</a>
@@ -98,12 +109,12 @@ export default function RootLayout({ children }) {
         </div>
 
         {/* <!-- Scripts --> */}
-        <script src="assets/js/jquery.min.js"></script>
+        {/* <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.dropotron.min.js"></script>
         <script src="assets/js/browser.min.js"></script>
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/main.js"></script> */}
       </body>
     </html>
   );

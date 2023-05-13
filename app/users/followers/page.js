@@ -3,7 +3,7 @@ import React from 'react';
 import FollowerView from './[user_id]/page';
 
 function FollowerPage() {
-  const user_id = 5; // 실제 사용자 ID를 여기에 할당
+  const user_id = 3; // 실제 사용자 ID를 여기에 할당
 
   return (
     <div>
