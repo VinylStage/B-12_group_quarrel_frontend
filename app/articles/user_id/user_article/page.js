@@ -1,104 +1,169 @@
 "use client";
 
-import React from 'react'
+import React from "react";
+import EditMyPage from "../../../../components/EditMyPage";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import DeleteView from "@/components/DeleteVIew";
+import LikeView from "@/components/LikeView";
 
 export default function user_article() {
-    return (
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem("access");
+
+      const response = await axios.get("http://localhost:8000/articles/1/", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return (
     <div className="wrapper">
-        <div className="container" id="main">
+      {data.map((a, i) => {
+        const title = a.title;
+        const content = a.content;
+        const likes = a.article_likes_count;
+        const create = a.create_at.substr(0, 10);
+        const user = a.user;
+        const image = a.article_image;
+        const bookmark = a.bookmark_count;
+        return (
+          <div className="container" id="main">
             <div className="row gtr-150">
-                <div className="col-8 col-12-narrower">
-                    {/* user_id의 게시글들 */}
-                    <article id="content">
-                        <header>
-                        {/* 수정,삭제버튼 / 본인에게만 보이게 */}
-                        <div className="sh_row" style={{justifyContent: 'flex-end'}}>
-                            <form method="post" action="#" className="sh_row button" style={{marginRight:'10px'}}>
-                                <button type="submit" className="sh_icon sh_a">수정하기</button>
-                            </form>
-                            <form method="post" action="#" className="sh_row button">
-                                <button type="submit" className="sh_icon sh_a">삭제하기</button>
-                            </form>
-                        </div>
-                            <h3 style={{margin: '15px 0px 5px'}}>My Title</h3>
-                            <div className="sh_row sh_best_userinfo">
-                                <div className="sh_p sh_row sh_best_user">
-                                    <p className="sh_p">post by.</p>
-                                    <p className="sh_p">
-                                        <a href="#" className="sh_a">user</a>
-                                    </p>
-                                </div>
-                                <p className="sh_p day">2023. 05. 23</p>
-                            </div>
-                        </header>
-                        <a href="#" className="image featured"><img src="images/pic01.jpg" alt="" /></a>
-                        <div className="sh_row" style={{justifyContent: 'flex-end'}}>
-                            <form method="post" action="#" className="sh_row sh_icon">
-                                <button type="submit" className="sh_icon sh_a">Bookmark</button><p className="sh_p3">44</p>
-                            </form>
-                            <form method="post" action="#" className="sh_row sh_icon">
-                                <button type="submit" className="sh_icon sh_a">Like</button><p className="sh_p3">44</p>
-                            </form>
-                        </div>
-                        <p>Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin rhoncus, sapien
-                        mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
-                        condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
-                        ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque
-                        eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
-                        turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
-                        Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-                        <div className="sh_row" style={{justifyContent: 'flex-end'}}>
-                            <a href="#" className="button">Read</a>
-                        </div>
-                    <div className="sh_line"></div>
-                    </article>
-                </div>
-                <div className="col-4 col-12-narrower">
-                    <section id="sidebar">
-                        <section className="col-4 col-12-narrower feature">
-                            <div className="image-wrapper first">
-                                {/* 프로필사진 */}
-                                <img className="image featured" src='./images/image-wrapper.svg' alt=""/>
-                            </div>
-                            <h3 style={{margin: '15px 0px 5px'}}>Name</h3>
-                            <div className="sh_row sh_best_userinfo">
-                                <div className="sh_p sh_row sh_best_user" style={{width:'150px'}}>
-                                <p className="sh_p">Gender:</p>
-                                    <p className="sh_p" style={{fontSize: '16px;'}}>성별</p>
-                                </div>
-                                <p className="sh_p day">2001. 11. 24</p>
-                            </div>
-                            <div className="sh_row" style={{justifyContent: 'flex-end'}}>
-                                {/* Follow버튼 / 본인에게는 보이지 않게 처리 */}
-                                <form method="post" action="#" className="sh_row sh_icon">
-                                    <button type="submit" className="sh_icon sh_a sh_p3">Follow</button>
-                                </form>
-                                {/* my view / follow 피드페이지, follower 리스트페이지로 가는 하이퍼링크 달아주세요 / 옆에 인원수 세고 인원수에 a태그로 달면 더 좋을 것 같아요 그건 추가사항으로! */}
-                                    <ul className="sh_row sh_icon">
-                                        <a href="#" className="sh_icon sh_a">Follow's</a>
-                                    </ul>
-                                    <ul className="sh_row sh_icon">
-                                        <a href="#" className="sh_icon sh_a">Follower's</a>
-                                    </ul>
-                            </div>
-                            <div className="sh_p2 sh_line sh_best_cont profile">
-                                이 편지는 영국에서 최초로 시작되어 일년에 한바퀴를 돌면서 받는 사람에게 행운을 주었고 지금은 당신에게로 옮겨진 이 편지는 4일 안에 당신 곁을 떠나야 합니다. 
-                                이 편지를 포함해서 7통을 행운이 필요한 사람에게 보내 주셔야 합니다. 복사를 해도 좋습니다. 혹 미신이라 하실지 모르지만 사실입니다.
-                                영국에서 HGXWCH이라는 사람은 1930년에 이 편지를 받았습니다. 그는 비서에게 복사해서 보내라고 했습니다. 며칠 뒤에 복권이 당첨되어 20억을 받았습니다. 
-                                어떤 이는 이 편지를 받았으나 96시간 이내 자신의 손에서 떠나야 한다는 사실을 잊었습니다. 그는 곧 사직되었습니다. 
-                                나중에야 이 사실을 알고 7통의 편지를 보냈는데 다시 좋은 직장을 얻었습니다. 미국의 케네디 대통령은 이 편지를 받았지만 그냥 버렸습니다. 
-                                결국 9일 후 그는 암살당했습니다. 기억해 주세요. 이 편지를 보내면 7년의 행운이 있을 것이고 그렇지 않으면 3년의 불행이 있을 것입니다. 
-                                그리고 이 편지를 버리거나 낙서를 해서는 절대로 안됩니다. 7통입니다. 이 편지를 받은 사람은 행운이 깃들것입니다. 힘들겠지만 좋은게 좋다고 생각하세요. 7년의 행운을 빌면서...
-                            </div>
-                            {/* 본인에게만 보이게 */}
-                            <ul className="actions" style={{float: 'right', marginTop: '10px'}}>
-                                <li><a href="#" className="button">내 정보 수정</a></li>
-                            </ul>
-                        </section>
-                    </section>
-                </div>
+              <div className="col-8 col-12-narrower">
+                {/* user_id의 게시글들 */}
+                <article id="content">
+                  <header>
+                    {/* 수정,삭제버튼 / 본인에게만 보이게 */}
+                    <EditMyPage />
+                    <div
+                      className="sh_row"
+                      style={{ justifyContent: "flex-end" }}
+                    >
+                      <form className="sh_row button">
+                        <DeleteView />
+                      </form>
+                    </div>
+                    <h3 style={{ margin: "15px 0px 5px" }}>{title}</h3>
+                    <div className="sh_row sh_best_userinfo">
+                      <div className="sh_p sh_row sh_best_user">
+                        <p className="sh_p">post by.</p>
+                        <p className="sh_p">
+                          <a href="#" className="sh_a">
+                            {user}
+                          </a>
+                        </p>
+                      </div>
+                      <p className="sh_p day">2023. 05. 23</p>
+                    </div>
+                  </header>
+                  <a href="#" className="image featured">
+                    <img src={image} alt="" />
+                  </a>
+                  <div
+                    className="sh_row"
+                    style={{ justifyContent: "flex-end" }}
+                  >
+                    <form method="post" action="#" className="sh_row sh_icon">
+                      <button type="submit" className="sh_icon sh_a">
+                        Bookmark
+                      </button>
+                      <p className="sh_p3">{bookmark}</p>
+                    </form>
+                    <form method="post" action="#" className="sh_row sh_icon">
+                      <LikeView />
+                      <p className="sh_p3">44</p>
+                    </form>
+                  </div>
+                  <p>{content}</p>
+                  <div
+                    className="sh_row"
+                    style={{ justifyContent: "flex-end" }}
+                  >
+                    <a href="#" className="button">
+                      Read
+                    </a>
+                  </div>
+                  <div className="sh_line"></div>
+                </article>
+              </div>
+              <div className="col-4 col-12-narrower">
+                <section id="sidebar">
+                  <section className="col-4 col-12-narrower feature">
+                    <div className="image-wrapper first">
+                      {/* 프로필사진 */}
+                      <img
+                        className="image featured"
+                        src="./images/image-wrapper.svg"
+                        alt=""
+                      />
+                    </div>
+                    <h3 style={{ margin: "15px 0px 5px" }}>{user}</h3>
+                    <div className="sh_row sh_best_userinfo">
+                      <div
+                        className="sh_p sh_row sh_best_user"
+                        style={{ width: "150px" }}
+                      >
+                        <p className="sh_p">gender:</p>
+                        <p className="sh_p" style={{ fontSize: "16px" }}>
+                          성별
+                        </p>
+                      </div>
+                      <p className="sh_p day">{create}</p>
+                    </div>
+                    <div
+                      className="sh_row"
+                      style={{ justifyContent: "flex-end" }}
+                    >
+                      {/* Follow버튼 / 본인에게는 보이지 않게 처리 */}
+                      <form
+                        method="post"
+                        action="#"
+                        className="sh_row sh_icon"
+                      ></form>
+                      {/* my view / follow 피드페이지, follower 리스트페이지로 가는 하이퍼링크 달아주세요 / 옆에 인원수 세고 인원수에 a태그로 달면 더 좋을 것 같아요 그건 추가사항으로! */}
+                      <ul className="sh_row sh_icon">
+                        <a href="#" className="sh_icon sh_a">
+                          Follow's
+                        </a>
+                      </ul>
+                      <ul className="sh_row sh_icon">
+                        <a href="#" className="sh_icon sh_a">
+                          Follower's
+                        </a>
+                      </ul>
+                    </div>
+                    <div className="sh_p2 sh_line sh_best_cont profile">
+                      {content}
+                    </div>
+                    {/* 본인에게만 보이게 */}
+                    <ul
+                      className="actions"
+                      style={{ float: "right", marginTop: "10px" }}
+                    >
+                      <li>
+                        <EditMyPage />
+                      </li>
+                    </ul>
+                  </section>
+                </section>
+              </div>
             </div>
-        </div>
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }

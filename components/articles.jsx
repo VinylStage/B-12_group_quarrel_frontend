@@ -37,7 +37,6 @@ function Articles(article_id) {
         const user = a.user;
         const image = a.article_image;
         const bookmark = a.bookmark_count;
-        console.log(a);
         return (
           <section className="col-4 col-12-narrower feature" key={i}>
             <div className="sh_row sh_best_userinfo">

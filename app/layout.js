@@ -2,11 +2,35 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import jwt from "jsonwebtoken";
+import MyPage from "@/components/MyPage";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const refresh = localStorage.getItem("refresh");
+  const access = localStorage.getItem("access");
   const router = useRouter();
+  if (access) {
+    useEffect(() => {
+      TD();
+    }, []);
+  }
+  function TD() {
+    const decodeToken = (token) => {
+      try {
+        const decoded = jwt.decode(token);
+        return decoded;
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        return null;
+      }
+    };
+
+    // 사용 예시
+    const token = localStorage.getItem("access");
+    const userId = decodeToken(token).user_id;
+  }
   // 로그아웃 함수
   async function handleLogout() {
     const response = await fetch(
@@ -30,7 +54,7 @@ export default function RootLayout({ children }) {
     if (access) {
       return (
         <div>
-          <a href="#">MyPage</a>
+          <MyPage />
           <button onClick={handleLogout} type="submit" value="Submit">
             Logout
           </button>

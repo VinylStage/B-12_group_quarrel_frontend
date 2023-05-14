@@ -45,7 +45,7 @@ export default function Login() {
         </header>
 
 
-        <div className="row" style={{ justifyContent: "center", marginTop: "-20px",flexWrap:'wrap!important'}}>
+        <div className="row" style={{ justifyContent: "center", marginTop: "-20px", flexWrap: 'wrap!important' }}>
 
           <section className="col-6 col-12-narrower">
             <form method="post" action="#">
@@ -83,7 +83,8 @@ export default function Login() {
                         onClick={handleLogin}
                         type="submit"
                         value="Login"
-                      />Login
+                      >Login
+                      </button>
                     </li>
                   </ul>
                 </div>
