@@ -1,16 +1,13 @@
 "use client";
-
+import { useRouter } from "next/navigation";
+import React from "react";
 export default function Page() {
   async function getArticles() {
-    const response = await fetch("http://127.0.0.1:8000/articles/1/", {
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    console.log(response);
+    const router = useRouter();
+    router.refresh;
   }
   return (
-    <form method="get">
+    <form>
       <div>
         <p>This is</p>
         <button onClick={getArticles} type="submit">

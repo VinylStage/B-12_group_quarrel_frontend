@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const refresh = localStorage.getItem("refresh");
   const router = useRouter();
+  // 로그아웃 함수
   async function handleLogout() {
     const response = await fetch(
       "http://127.0.0.1:8000/users/api/token/blacklist/",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
   }
   function AuthView() {
     const access = localStorage.getItem("access");
+    // 로그인여부에 따라 버튼표시
     if (access) {
       return (
         <div>
