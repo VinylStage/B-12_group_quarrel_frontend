@@ -2,11 +2,32 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import jwt from "jsonwebtoken";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const refresh = localStorage.getItem("refresh");
   const router = useRouter();
+  useEffect(() => {
+    TD();
+  }, []);
+  function TD() {
+    const decodeToken = (token) => {
+      try {
+        const decoded = jwt.decode(token);
+        return decoded;
+      } catch (error) {
+        console.error("Error decoding token:", error);
+        return null;
+      }
+    };
+
+    // 사용 예시
+    const token = localStorage.getItem("access");
+    const userId = decodeToken(token).user_id;
+    console.log(userId);
+  }
   // 로그아웃 함수
   async function handleLogout() {
     const response = await fetch(
