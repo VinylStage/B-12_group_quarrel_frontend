@@ -1,55 +1,65 @@
 "use client";
-import React from 'react';
-import FollowView from './[user_id]/page';
+import React, { useState, useEffect  } from "react";
 
-export default function follow() {
-    return (
-      <div className="wrapper">
-          <div className="container" id="main">
-              <div className="row gtr-150">
-                  <div className="col-8 col-12-narrower">
-                              <h2 style={{marginBottom: '50px'}}>Follower's posting</h2>
-                      {/* 게시글 */}
-                      <article id="content">
-                          <header>
-                              <li className="sh_line"></li>
-                              <h3 style={{margin: '15px 0px 5px'}}>Follower's Title</h3>
-                              <div className="sh_row sh_best_userinfo">
-                                  <div className="sh_p sh_row sh_best_user">
-                                      <p className="sh_p">post by.</p>
-                                      <p className="sh_p">
-                                          <a href="#" className="sh_a">user</a>
-                                      </p>
-                                  </div>
-                                  <p className="sh_p day">2023. 05. 23</p>
-                              </div>
-                          </header>
-                          <a href="#" className="image featured"><img src="images/media/img_prof/profile.jpg" alt="" /></a>
-                          <div className="sh_row" style={{justifyContent: 'flex-end'}}>
-                          <form method="post" action="#" className="sh_row sh_icon">
-                              <button type="submit" className="sh_icon sh_a">Bookmark</button><p className="sh_p3">44</p>
-                          </form>
-                          <form method="post" action="#" className="sh_row sh_icon">
-                              <button type="submit" className="sh_icon sh_a">Like</button><p className="sh_p3">44</p>
-                          </form>
-                          </div>
-                          <p>hi</p>
-                      </article>
-                  </div>
-                  <div className="col-4 col-12-narrower">
-                      {/* Sidebar */}
-                      <section id="sidebar">
-                          <section className="col-4 col-12-narrower feature">
-                              <div className="image-wrapper first">
-                                  {/* 유저정보 */}
-                                  <FollowView user_id={2} />
-                              </div>
-                          </section>
-                      </section>
-                  </div>
-              </div>
-          </div>
+export default function FollowView({ user_id }) {
+  const [follows, setFollows] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/users/follow/${user_id}`);
+        const data = await response.json();
+        console.log(data);
+        setFollows(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [user_id]);
+
+  return(
+    <div>
+    {follows.map((follow) => (
+      <div key = {follow.id} className="sh_p sh_row sh_best_user">
+        <a href={`/users/follow/${follow.fl}`} className="sh_profileimg">
+          <img className="sh_profileimg" src={follow.followimage}alt=""/>
+        </a>
+        <p className="sh_p">
+           <a href={`/users/follow/${follow.fl}`} className="sh_a">{follow.follow}</a>
+        </p>
       </div>
-    )
-  }
+    ))}
+    </div>
+  );
+}
 
+// export default function FollowButton({ followerId, followId }) {
+//   const [isFollowing, setIsFollowing] = useState(false);
+
+//   const handleFollow = async () => {
+//     try {
+//       const response = await fetch('http://127.0.0.1:8000/users/follow/', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ fl: followId }),
+//       });
+
+//       if (response.status === 201) {
+//         setIsFollowing((prevState) => !prevState); // 토글 상태로 변경
+//         console.log('Follow successful');
+//       }
+//     } catch (error) {
+//       console.error('Follow error:', error);
+//     }
+//   };
+
+//   return (
+//     <button onClick={handleFollow} disabled={isFollowing}>
+//       {isFollowing ? 'Unfollow' : 'Follow'} {/* 팔로우 상태에 따라 버튼 텍스트 변경 */}
+//     </button>
+//   );
+// }
