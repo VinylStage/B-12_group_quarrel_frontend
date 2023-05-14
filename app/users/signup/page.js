@@ -19,7 +19,7 @@ export default function SignUp() {
         name: name,
         email: email,
         password: password,
-        password2: password2,
+        // password2: password2,
       }),
     });
     router.push("/users/login");

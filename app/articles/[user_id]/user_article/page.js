@@ -4,6 +4,8 @@ import React from "react";
 import EditMyPage from "../../../../components/EditMyPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import DeleteView from "@/components/DeleteVIew";
+import LikeView from "@/components/LikeView";
 
 export default function user_article() {
   const [data, setData] = useState([]);
@@ -50,10 +52,8 @@ export default function user_article() {
                       className="sh_row"
                       style={{ justifyContent: "flex-end" }}
                     >
-                      <form method="post" action="#" className="sh_row button">
-                        <button type="submit" className="sh_icon sh_a">
-                          삭제하기
-                        </button>
+                      <form className="sh_row button">
+                        <DeleteView />
                       </form>
                     </div>
                     <h3 style={{ margin: "15px 0px 5px" }}>{title}</h3>
@@ -78,14 +78,12 @@ export default function user_article() {
                   >
                     <form method="post" action="#" className="sh_row sh_icon">
                       <button type="submit" className="sh_icon sh_a">
-                        {bookmark}
+                        Bookmark
                       </button>
-                      <p className="sh_p3">44</p>
+                      <p className="sh_p3">{bookmark}</p>
                     </form>
                     <form method="post" action="#" className="sh_row sh_icon">
-                      <button type="submit" className="sh_icon sh_a">
-                        {likes}
-                      </button>
+                      <LikeView />
                       <p className="sh_p3">44</p>
                     </form>
                   </div>
