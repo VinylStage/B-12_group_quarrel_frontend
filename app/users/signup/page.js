@@ -6,7 +6,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [code, setCode] = useState("");
   const router = useRouter();
 
   async function handleSignup() {
@@ -16,15 +16,29 @@ export default function SignUp() {
       },
       method: "POST",
       body: JSON.stringify({
-        name: name,
         email: email,
         password: password,
-        // password2: password2,
+        name: name,
+      }),
+    });
+  }
+
+  async function EmailCert() {
+    const response = await fetch("http://127.0.0.1:8000/users/pass/cert/", {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        code: code,
       }),
     });
     router.push("/users/login");
     router.refresh();
   }
+
+
 
   return (
     <div id="footer-wrapper">
@@ -72,28 +86,38 @@ export default function SignUp() {
                 </div>
                 <div className="col-12 col-12-mobile">
                   <input
-                    type="password"
-                    id="password2"
-                    name="password"
-                    placeholder="password check"
-                    autoComplete="new-password"
-                    value={password2}
-                    onChange={(event) => setPassword2(event.target.value)}
+                    type="text"
+                    id="code"
+                    name="code"
+                    placeholder="code"
+                    autoComplete="code"
+                    value={code}
+                    onChange={(event) => setCode(event.target.value)}
                   />
                 </div>
                 <div className="col-12">
                   <ul className="actions" style={{ float: "right" }}>
                     <li>
-                      <a href="login/" style={{ borderBottom: "none" }}>
-                        Login
-                      </a>
+                      <button
+                        onClick={EmailCert}
+                        type="submit"
+                        value="Submit"
+                        name="인증완료"
+                        style={{ border: "none" }}
+                      >
+                        인증하기
+                      </button>
                     </li>
                     <li>
                       <button
                         onClick={handleSignup}
                         type="submit"
                         value="Submit"
-                      />
+                        name="인증"
+                        style={{ border: "none" }}
+                      >
+                        이메일 인증받기
+                      </button>
                     </li>
                   </ul>
                 </div>
