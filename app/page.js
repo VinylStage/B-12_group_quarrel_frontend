@@ -1,13 +1,10 @@
-'use client'
+"use client";
+import Articles from "@/components/articles";
 
 export default function Home() {
-  
-  
   return (
     <div>
-    <h4>home</h4>
-    
+      <Articles />
     </div>
-  )
+  );
 }
-

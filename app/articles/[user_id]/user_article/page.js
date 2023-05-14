@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import EditMyPage from "../../../../components/EditMyPage";
+import EditMyPage from "@/components/EditMyPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DeleteView from "@/components/DeleteVIew";
