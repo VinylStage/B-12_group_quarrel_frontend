@@ -1,8 +1,9 @@
 "use client";
 
-import Articles from "../../../components/articles";
+import Articles from "@/components/articles";
 
-export default function category() {
+export default function category( {params} ) {
+  console.log({params})
   return (
     <div className="wrapper">
       <div className="container" id="main" style={{ width: "" }}>
@@ -12,7 +13,7 @@ export default function category() {
           style={{ margin: "50px 0px", paddingBottom: "50px" }}
         >
           {/* 게시글 가져오는 컴포넌트 추가 */}
-          <Articles />
+          <Articles article_id={params.category_id}  />
           <section className="col-4 col-12-narrower feature">
             <div className="sh_row sh_best_userinfo">
               <div

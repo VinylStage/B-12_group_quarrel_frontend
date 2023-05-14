@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function Articles() {
+function Articles(article_id) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Articles() {
     try {
       const token = localStorage.getItem("access");
 
-      const response = await axios.get("http://localhost:8000/articles/1/", {
+      const response = await axios.get(`http://localhost:8000/articles/${article_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
