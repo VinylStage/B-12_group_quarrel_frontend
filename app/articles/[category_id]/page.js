@@ -13,7 +13,7 @@ export default function category( {params} ) {
           style={{ margin: "50px 0px", paddingBottom: "50px" }}
         >
           {/* 게시글 가져오는 컴포넌트 추가 */}
-          <Articles article_id={params.category_id}  />
+          <Articles category_id={params.category_id}  />
           <section className="col-4 col-12-narrower feature">
             <div className="sh_row sh_best_userinfo">
               <div
