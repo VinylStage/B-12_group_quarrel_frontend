@@ -1,6 +1,6 @@
 "use client";
 
-import Articles from "../../../components/articles";
+import Articles from "@/components/articles";
 
 export default function category() {
   return (
