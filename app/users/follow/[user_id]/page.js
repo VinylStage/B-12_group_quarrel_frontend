@@ -35,31 +35,31 @@ export default function FollowView({ user_id }) {
   );
 }
 
-export default function FollowButton({ followerId, followId }) {
-  const [isFollowing, setIsFollowing] = useState(false);
+// export default function FollowButton({ followerId, followId }) {
+//   const [isFollowing, setIsFollowing] = useState(false);
 
-  const handleFollow = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:8000/users/follow/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ fl: followId }),
-      });
+//   const handleFollow = async () => {
+//     try {
+//       const response = await fetch('http://127.0.0.1:8000/users/follow/', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ fl: followId }),
+//       });
 
-      if (response.status === 201) {
-        setIsFollowing((prevState) => !prevState); // 토글 상태로 변경
-        console.log('Follow successful');
-      }
-    } catch (error) {
-      console.error('Follow error:', error);
-    }
-  };
+//       if (response.status === 201) {
+//         setIsFollowing((prevState) => !prevState); // 토글 상태로 변경
+//         console.log('Follow successful');
+//       }
+//     } catch (error) {
+//       console.error('Follow error:', error);
+//     }
+//   };
 
-  return (
-    <button onClick={handleFollow} disabled={isFollowing}>
-      {isFollowing ? 'Unfollow' : 'Follow'} {/* 팔로우 상태에 따라 버튼 텍스트 변경 */}
-    </button>
-  );
-}
+//   return (
+//     <button onClick={handleFollow} disabled={isFollowing}>
+//       {isFollowing ? 'Unfollow' : 'Follow'} {/* 팔로우 상태에 따라 버튼 텍스트 변경 */}
+//     </button>
+//   );
+// }
