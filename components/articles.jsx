@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-function Articles() {
+function Articles({category_id}) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -14,14 +14,16 @@ function Articles() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("access");
-
-      const response = await axios.get("http://localhost:8000/articles/1/", {
+      console.log({category_id})
+      const response = await axios.get(`http://localhost:8000/articles/${category_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-
-      setData(response.data);
+      const data = await response.json()
+      setData(data);
+      console.log(data)
+      console.log(setData.data)
     } catch (error) {
       console.error(error);
     }
@@ -29,7 +31,8 @@ function Articles() {
 
   return (
     <div>
-      {data.map((a, i) => {
+      {data && data.results.map((a,i) => {        
+        console.log(a)
         const title = a.title;
         const content = a.content;
         const likes = a.article_likes_count;
@@ -90,5 +93,6 @@ function Articles() {
     </div>
   );
 }
+
 
 export default Articles;
