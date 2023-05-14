@@ -1,9 +1,30 @@
 "use client";
 
+import { useEffect,useState } from "react";
 import React from "react";
+import jwt from "jsonwebtoken";
 
-export default function user_id({ params }) {
-  console.log({ params });
+export default function user_id({ parama }) {
+  
+  const token = localStorage.getItem("access");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
+  
+  const fetchData = async () => {
+    try {
+      const decoded = jwt.decode(token);
+      console.log(decoded)
+      setData(decoded)
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return null;
+    }
+  };
+
   return (
     <div id="footer-wrapper">
       <div id="footer" className="container">
@@ -18,12 +39,12 @@ export default function user_id({ params }) {
             <form method="post" action="#">
               <div className="row gtr-50">
                 <div className="col-12 col-12-mobile">
-                  <input name="name" placeholder="Name" type="text" />
+                  <input name="name" placeholder={data.name} type="text"/>
                 </div>
                 <div className="col-12 col-12-mobile">
                   <input
                     name="password"
-                    placeholder="Password"
+                    placeholder="password"
                     type="password"
                   />
                 </div>
@@ -32,7 +53,10 @@ export default function user_id({ params }) {
                     className="sh_p sh_row sh_best_user"
                     style={{ width: "550px" }}
                   >
+                    <div style={{marginRight:'30px;'}}>{data.gender}</div>
+                    <div style={{marginRight:'30px;'}}>⇢</div>
                     {/* 체크박스 백그라운드컬러는 보기편하시라고 넣어놨습니다 삭제하셔도 괜찮습니다 */}
+                    {/* <h2>{data.gender}</h2> */}
                     <div>남</div>
                     <input
                       name="gender"
@@ -57,7 +81,7 @@ export default function user_id({ params }) {
                     {/* 기존 프로필사진 */}
                     <img
                       className="sh_profileimg2"
-                      src="images/pic03.jpg"
+                      source="#"
                       alt=""
                     />
                     <div>⇢</div>
