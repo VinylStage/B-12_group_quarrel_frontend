@@ -9,10 +9,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const refresh = localStorage.getItem("refresh");
+  const access = localStorage.getItem("access");
   const router = useRouter();
-  useEffect(() => {
-    TD();
-  }, []);
+  if (access) {
+    useEffect(() => {
+      TD();
+    }, []);
+  }
   function TD() {
     const decodeToken = (token) => {
       try {
