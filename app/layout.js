@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import jwt from "jsonwebtoken";
+import MyPage from "@/components/MyPage";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
@@ -26,7 +27,6 @@ export default function RootLayout({ children }) {
     // 사용 예시
     const token = localStorage.getItem("access");
     const userId = decodeToken(token).user_id;
-    console.log(userId);
   }
   // 로그아웃 함수
   async function handleLogout() {
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
     if (access) {
       return (
         <div>
-          <a href="#">MyPage</a>
+          <MyPage />
           <button onClick={handleLogout} type="submit" value="Submit">
             Logout
           </button>
