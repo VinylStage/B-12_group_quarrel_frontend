@@ -22,6 +22,8 @@ function Articles({ category_id }) {
           },
         }
       );
+      console.log(response.data)
+
       const data = response.data.results;
       setData(data);
     } catch (error) {
