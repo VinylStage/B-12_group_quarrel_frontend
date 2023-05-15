@@ -3,13 +3,14 @@
 // 게시글 목록가져오는 컴포넌트
 import { useState, useEffect } from "react";
 import axios from "axios";
+// import category from "@/app/articles/[category_id]/page";
 
 function Articles({ category_id }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [category_id]);
 
   const fetchData = async () => {
     try {

@@ -5,7 +5,7 @@ import axios from "axios";
 export default function detail({ params }) {
   const [data, setData] = useState([]);
   const article_id = parseInt(params.article_id);
-
+  console.log(article_id)
   useEffect(() => {
     fetchData();
   }, []);
@@ -23,6 +23,7 @@ export default function detail({ params }) {
     }
   };
   return (
+    <div>        
     <div className="wrapper">
       <div className="sh_container container" id="main">
         <article id="content">
@@ -50,7 +51,7 @@ export default function detail({ params }) {
               <div className="sh_p sh_row sh_best_user">
                 <p className="sh_p sh_pix">post by.</p>
                 <p className="sh_p">
-                  <a href="#" className="sh_a">
+                  <a href={`http://localhost:3000/articles/user_id/${data.user}`} className="sh_a">
                     {data.user}
                   </a>
                 </p>
@@ -106,7 +107,7 @@ export default function detail({ params }) {
             <img className="sh_profileimg" src="images/pic03.jpg" alt="" />
           </a>
           <p className="sh_p">
-            <a href="#" className="sh_a">
+            <a href='#' className="sh_a">
               username
             </a>
           </p>
@@ -139,6 +140,7 @@ export default function detail({ params }) {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }
