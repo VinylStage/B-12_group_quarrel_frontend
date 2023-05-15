@@ -21,7 +21,6 @@ export default function detail({ params }) {
     } catch (error) {
       console.error(error);
     }
-    console.log(data);
   };
   return (
     <div>        
@@ -53,11 +52,11 @@ export default function detail({ params }) {
                 <p className="sh_p sh_pix">post by.</p>
                 <p className="sh_p">
                   <a href={`http://localhost:3000/articles/user_id/${data.user}`} className="sh_a">
-                    username
+                    {data.user}
                   </a>
                 </p>
               </div>
-              <p className="sh_p day">2023. 05. 23</p>
+              <p className="sh_p day">{data.create_at}</p>
             </div>
           </header>
           <a href="#" className="image featured">
@@ -68,46 +67,18 @@ export default function detail({ params }) {
               <button type="submit" className="sh_icon sh_a">
                 Bookmark
               </button>
-              <p className="sh_p3">44</p>
+              <p className="sh_p3">{data.bookmark_cout}</p>
             </form>
             <form method="post" action="#" className="sh_row sh_icon">
               <button type="submit" className="sh_icon sh_a">
                 Like
               </button>
-              <p className="sh_p3">44</p>
+              <p className="sh_p3">{data.articfle_like_cout}</p>
             </form>
           </div>
 
+          <p>content</p>
           <p>{data.content}</p>
-          <p>
-            {" "}
-            Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin
-            rhoncus, sapien mollis luctus hendrerit, orci dui viverra metus, et
-            cursus nulla mi sed elit. Vestibulum condimentum, mauris a mattis
-            vestibulum, urna mauris cursus lorem, eu fringilla lacus ante non
-            est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt
-            neque eros. Duis faucibus blandit ligula, mollis commodo risus
-            sodales at. Sed rutrum et turpis vel blandit. Nullam ornare congue
-            massa, at commodo nunc venenatis varius. Praesent mollis nisi at
-            vestibulum aliquet. Sed sagittis congue urna ac consectetur.
-          </p>
-          <p>
-            Mauris eleifend eleifend felis aliquet ornare. Vestibulum porta
-            velit at elementum gravida nibh eget, volutpat odio. Proin rhoncus,
-            sapien mollis luctus hendrerit, orci dui viverra metus, et cursus
-            nulla mi sed elit. Vestibulum condimentum, mauris a mattis
-            vestibulum, urna mauris cursus lorem, eu fringilla lacus ante non
-            est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt
-            neque eros. Duis faucibus blandit ligula, mollis commodo risus
-            sodales at. Sed rutrum et turpis vel blandit. Nullam ornare congue
-            massa, at commodo nunc venenatis varius. Praesent mollis nisi at
-            vestibulum aliquet. Sed sagittis congue urna ac consectetur.
-          </p>
-          <p>
-            Vestibulum pellentesque posuere lorem non aliquam. Mauris eleifend
-            eleifend felis aliquet ornare. Vestibulum porta velit at elementum
-            elementum.
-          </p>
         </article>
         <form>
           <div>
