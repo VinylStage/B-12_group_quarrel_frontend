@@ -1,15 +1,16 @@
 "use client";
 
 import React from "react";
-import EditMyPage from "../../../../components/EditMyPage";
+import EditMyPage from "@/components/EditMyPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DeleteView from "@/components/DeleteVIew";
 import LikeView from "@/components/LikeView";
+import Follow from "@/components/Follow"
 
-export default function user_article() {
+export default function user_article({params}) {
   const [data, setData] = useState([]);
-
+  console.log({params})
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,13 +19,14 @@ export default function user_article() {
     try {
       const token = localStorage.getItem("access");
 
-      const response = await axios.get("http://localhost:8000/articles/1/", {
+      const response = await axios.get(`http://localhost:8000/articles/${params.user_article}/user_article`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      setData(response.data);
+      setData(response.data.results);
+
     } catch (error) {
       console.error(error);
     }
@@ -128,11 +130,7 @@ export default function user_article() {
                       style={{ justifyContent: "flex-end" }}
                     >
                       {/* Follow버튼 / 본인에게는 보이지 않게 처리 */}
-                      <form
-                        method="post"
-                        action="#"
-                        className="sh_row sh_icon"
-                      ></form>
+                       <Follow followId={params.user_article}/>
                       {/* my view / follow 피드페이지, follower 리스트페이지로 가는 하이퍼링크 달아주세요 / 옆에 인원수 세고 인원수에 a태그로 달면 더 좋을 것 같아요 그건 추가사항으로! */}
                       <ul className="sh_row sh_icon">
                         <a href="#" className="sh_icon sh_a">

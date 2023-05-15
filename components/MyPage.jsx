@@ -22,7 +22,7 @@ function MyPage() {
     const token = localStorage.getItem("access");
     const userId = decodeToken(token).user_id;
   }
-  return <a href="/articles/{userId}/user_article/">MyPage</a>;
+  return <a href="/users/{userId}">MyPage</a>;
 }
 
 export default MyPage;
