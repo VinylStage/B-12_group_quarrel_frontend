@@ -23,9 +23,9 @@ function Articles({ category_id }) {
           },
         }
       );
-      console.log(response)
+      console.log(response.data)
+
       const data = response.data.results;
-      console.log(data)
       setData(data);
     } catch (error) {
       console.error(error);
@@ -43,6 +43,7 @@ function Articles({ category_id }) {
           const user = a.user;
           const image = a.article_image;
           const bookmark = a.bookmark_count;
+          const id = a.id;
           return (
             <section className="col-4 col-12-narrower feature" key={i}>
               <div className="sh_row sh_best_userinfo">
@@ -68,15 +69,15 @@ function Articles({ category_id }) {
               <div className="sh_row" style={{ justifyContent: "flexEnd" }}>
                 <form method="post" action="#" className="sh_row sh_icon">
                   <button type="submit" className="sh_icon sh_a">
-                    {bookmark}
+                    Bookmarks
                   </button>
-                  <p className="sh_p3">44</p>
+                  <p className="sh_p3">{bookmark}</p>
                 </form>
                 <form method="post" action="#" className="sh_row sh_icon">
                   <button type="submit" className="sh_icon sh_a">
-                    {likes}
+                    Likes
                   </button>
-                  <p className="sh_p3">44</p>
+                  <p className="sh_p3">{likes}</p>
                 </form>
               </div>
               <div className="sh_p2 sh_line sh_best_cont">{content}</div>
@@ -85,7 +86,7 @@ function Articles({ category_id }) {
                 style={{ float: "right", marginTop: "10px" }}
               >
                 <li>
-                  <a href="#" className="button">
+                  <a href={`/articles/detail/${id}`} className="button">
                     Read
                   </a>
                 </li>

@@ -18,7 +18,7 @@ export default function user_article({params}) {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem("access");
-
+      console.log(token)
       const response = await axios.get(`http://localhost:8000/articles/${params.user_article}/user_article`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -133,12 +133,12 @@ export default function user_article({params}) {
                        <Follow followId={params.user_article}/>
                       {/* my view / follow 피드페이지, follower 리스트페이지로 가는 하이퍼링크 달아주세요 / 옆에 인원수 세고 인원수에 a태그로 달면 더 좋을 것 같아요 그건 추가사항으로! */}
                       <ul className="sh_row sh_icon">
-                        <a href="#" className="sh_icon sh_a">
+                        <a href={`http://localhost:3000/users/follow/${params.user_article}`} className="sh_icon sh_a">
                           Follow's
                         </a>
                       </ul>
                       <ul className="sh_row sh_icon">
-                        <a href="#" className="sh_icon sh_a">
+                        <a href={`http://localhost:3000/users/followers/${params.user_article}`} className="sh_icon sh_a">
                           Follower's
                         </a>
                       </ul>

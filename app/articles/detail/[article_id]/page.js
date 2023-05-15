@@ -1,9 +1,32 @@
 "use client";
 
-export default function detail() {
+import { useState, useEffect } from "react";
+import axios from "axios";
+export default function detail({ params }) {
+  const [data, setData] = useState([]);
+  const article_id = parseInt(params.article_id);
+  console.log(article_id)
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/articles/detail/${article_id}/`
+      );
+      const data = response.data;
+      console.log(data);
+      setData(data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(data);
+  };
   return (
-    <div class="wrapper">
-      <div class="sh_container container" id="main">
+    <div>        
+    <div className="wrapper">
+      <div className="sh_container container" id="main">
         <article id="content">
           <header>
             {/* 본인만 보이게 */}
@@ -24,12 +47,12 @@ export default function detail() {
                 </button>
               </form>
             </div>
-            <h2>title</h2>
+            <h2>{data.title}</h2>
             <div className="sh_row sh_best_userinfo">
               <div className="sh_p sh_row sh_best_user">
                 <p className="sh_p sh_pix">post by.</p>
                 <p className="sh_p">
-                  <a href="#" className="sh_a">
+                  <a href={`http://localhost:3000/articles/user_id/${data.user}`} className="sh_a">
                     username
                   </a>
                 </p>
@@ -37,7 +60,7 @@ export default function detail() {
               <p className="sh_p day">2023. 05. 23</p>
             </div>
           </header>
-          <a href="#" class="image featured">
+          <a href="#" className="image featured">
             <img src="images/pic06.jpg" alt="" />
           </a>
           <div className="sh_row" style={{ justifyContent: "flex-end" }}>
@@ -55,7 +78,7 @@ export default function detail() {
             </form>
           </div>
 
-          <p>content</p>
+          <p>{data.content}</p>
           <p>
             {" "}
             Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin
@@ -113,7 +136,7 @@ export default function detail() {
             <img className="sh_profileimg" src="images/pic03.jpg" alt="" />
           </a>
           <p className="sh_p">
-            <a href="#" className="sh_a">
+            <a href='#' className="sh_a">
               username
             </a>
           </p>
@@ -146,6 +169,7 @@ export default function detail() {
           </form>
         </div>
       </div>
+    </div>
     </div>
   );
 }

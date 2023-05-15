@@ -88,10 +88,10 @@ export default function RootLayout({ children }) {
                 <ul>
                   {/* <!-- 카테고리 추가해주시면 됩니다 --> */}
                   <li>
-                    <a href="#">Category</a>
+                    <a href="/articles/1/">Category</a>
                   </li>
                   <li className="break">
-                    <a href="#">Category</a>
+                    <a href="/articles/2/">Category</a>
                   </li>
                   {/* <!-- Logo --> */}
                   <li className="sh_logo">
@@ -100,11 +100,11 @@ export default function RootLayout({ children }) {
                     </h1>
                   </li>
                   <li>
-                    <a href="#">Category</a>
+                    <a href="/articles/3/">Category</a>
                   </li>
-                  {/* <li>
-                    <a href="#">Category</a>
-                  </li> */}
+                  <li>
+                    <a href="/articles/4/">Category</a>
+                  </li>
                   {/* <!-- 비회원은 Login으로, Login 화면에서 signup 버튼 만들기 --> */}
                   <li className="sh_mypage">
                     <AuthView></AuthView>
